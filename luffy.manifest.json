@@ -1,0 +1,15 @@
+{
+  "stack": "nextjs-fullstack",
+  "install": "if [ -d node_modules ] && [ ! -d node_modules/.pnpm ]; then rm -rf node_modules package-lock.json; fi && pnpm install --no-frozen-lockfile",
+  "lint": "pnpm exec eslint --fix --max-warnings 0 . && node scripts/platform-lint.mjs",
+  "check": "pnpm run build",
+  "dev": "pnpm exec next dev -H 0.0.0.0 -p 3000",
+  "health": "/api/health",
+  "protect": [
+    "eslint.config.mjs",
+    "scripts/platform-lint.mjs"
+  ],
+  "layers": [
+    "nextjs-fullstack"
+  ]
+}

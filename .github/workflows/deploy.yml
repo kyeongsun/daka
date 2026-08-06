@@ -1,0 +1,31 @@
+name: Deploy to EdgeOne
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build and export
+        run: pnpm run build && pnpm run export
+
+      - name: Deploy to EdgeOne
+        # 这里需要你填写 EdgeOne 的上传命令，比如用 rclone 或官方 CLI
+        run: |
+          # 示例：用 rclone 上传 out 文件夹到 EdgeOne 存储桶
+          rclone sync out edgeone:your-bucket-name

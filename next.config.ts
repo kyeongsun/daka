@@ -10,6 +10,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   serverExternalPackages: ["better-sqlite3"],
   allowedDevOrigins: ["*.e2b.app", "*.e2b.dev", "*.sbx.luxiaofei.cc"],
+
+// 加入这两行，开启纯静态导出
+  output: 'export',
+  images: { unoptimized: true }, 
 };
 
 export default nextConfig;
